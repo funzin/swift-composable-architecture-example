@@ -1,0 +1,7 @@
+strings:
+  inputs: Target/Core/Core/Resource/Localizable.strings
+  outputs:
+    - templateName: structured-swift5
+      output: Target/Core/Core/Source/Generated/Strings.swift
+      params:
+        publicAccess: true

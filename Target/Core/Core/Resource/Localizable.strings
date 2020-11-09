@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  GitHubApp
+
+  Created by nakazawa fumito on 2020/11/14.
+  
+*/
+
+starred = "Starred";
+star = "Star";
+
+searchViewTitle = "Repository";
+searchViewPlaceHolder = "Set repository name";
+searchViewFailedAlert = "Search failed";
+
+favoriteViewTitle = "Favorite";

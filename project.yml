@@ -1,0 +1,133 @@
+packages:
+  APIKit:
+    url: https://github.com/ishkawa/APIKit
+    version: 5.1.0
+  ComposableArchitecture:
+    url: https://github.com/pointfreeco/swift-composable-architecture
+    version: 0.9.0
+  SwiftyUserDefaults:
+    url: https://github.com/sunshinejr/SwiftyUserDefaults
+    version: 5.0.0
+minimumXcodeGenVersion: 2.18.0
+name: GitHubApp
+options:
+  bundleIdPrefix: com.funzin
+  createIntermediateGroups: true
+settings:
+  base:
+    IPHONEOS_DEPLOYMENT_TARGET: 13.0
+targets:
+  GitHubApp:
+    type: application
+    platform: iOS
+    sources: [Target/GitHubApp/GitHubApp]
+    dependencies:
+      - target: Detail
+      - target: Search
+      - target: Favorite
+      - target: UIComponent
+      - target: Core
+  GitHubAppTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [Target/GitHubApp/GitHubAppTests]
+    dependencies:
+      - target: GitHubApp
+  Search:
+    type: framework
+    platform: iOS
+    sources: [Target/Search/Search]
+    dependencies:
+      - target: UIComponent
+      - target: Core
+  SearchTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [Target/Search/SearchTests]
+    dependencies:
+      - target: Search
+  Favorite:
+    type: framework
+    platform: iOS
+    sources: [Target/Favorite/Favorite]
+    dependencies:
+      - target: UIComponent
+      - target: Core
+  FavoriteTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [Target/Favorite/FavoriteTests]
+    dependencies:
+      - target: Favorite
+  Detail:
+    type: framework
+    platform: iOS
+    sources: [Target/Detail/Detail]
+    dependencies:
+      - target: UIComponent
+      - target: Core
+  DetailTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [Target/Detail/DetailTests]
+    dependencies:
+      - target: Detail
+  UIComponent:
+    type: framework
+    platform: iOS
+    sources: [Target/UIComponent/UIComponent]
+    dependencies:
+      - target: Core
+  Core:
+    type: framework
+    platform: iOS
+    sources: [Target/Core/Core]
+    dependencies:
+      - package: ComposableArchitecture
+      - package: APIKit
+      - package: SwiftyUserDefaults
+  CoreTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [Target/Core/CoreTests]
+    dependencies:
+      - target: Core
+  Mock:
+    type: framework
+    platform: iOS
+    sources: [Target/Mock/Mock]
+    dependencies:
+      - target: Core
+  SearchSandbox:
+    type: application
+    platform: iOS
+    sources: [Target/SearchSandbox/SearchSandbox]
+    settings:
+        IPHONEOS_DEPLOYMENT_TARGET: 14.0
+    dependencies:
+      - target: Search
+      - target: UIComponent
+      - target: Core
+      - target: Mock
+  DetailSandbox:
+    type: application
+    platform: iOS
+    sources: [Target/DetailSandbox/DetailSandbox]
+    settings:
+        IPHONEOS_DEPLOYMENT_TARGET: 14.0
+    dependencies:
+      - target: Detail
+      - target: UIComponent
+      - target: Core
+      - target: Mock
+  FavoriteSandbox:
+    type: application
+    platform: iOS
+    sources: [Target/FavoriteSandbox/FavoriteSandbox]
+    settings:
+        IPHONEOS_DEPLOYMENT_TARGET: 14.0
+    dependencies:
+      - target: Favorite
+      - target: UIComponent
+      - target: Core
+      - target: Mock
